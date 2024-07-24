@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Button</title>
+    <style>
+      .btn {
+        padding: 7px 20px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        transition: background-color 0.5s ease;
+        box-sizing: border-box;
+      }
+
+      .simple-btn {
+        background-color: #0b4f97;
+        color: white;
+        border-top-left-radius: 25px;
+        border-bottom-left-radius: 25px;
+        padding-right: 20px;
+      }
+
+      .dropbtn {
+        background-color: #0b4f97;
+        color: white;
+        border-top-right-radius: 25px;
+        border-bottom-right-radius: 25px;
+        position: relative;
+        padding-left: 20px;
+      }
+
+      .button-container {
+        display: flex;
+      }
+
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+
+      .dropdown-content {
+        font-family: sans-serif;
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        transition: max-height 1.5s ease, opacity 0.3s ease;
+        border-bottom-right-radius: 25px;
+        border-bottom-left-radius: 25px;
+      }
+
+      .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+      }
+
+      .dropdown-content a:hover {
+        background-color: #3c3c3c;
+        color: white;
+      }
+
+      .dropdown.active .dropdown-content {
+        max-height: 500px;
+        opacity: 1;
+      }
+
+      .dropdown:hover .dropbtn {
+        background-color: #1760af;
+      }
+
+      .simple-btn:hover {
+        background-color: #1760af;
+      }
+
+      .toggle-icon {
+        font-size: 30px;
+        margin-left: 8px;
+        transition: transform 0.3s ease;
+      }
+
+      .dropdown:not(.active) .toggle-icon {
+        transform: rotate(0deg);
+      }
+
+      .dropdown.active .toggle-icon {
+        transform: rotate(180deg);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="button-container">
+      <button class="btn simple-btn">Download</button>
+      <div class="dropdown">
+        <button class="btn dropbtn" onclick="toggleDropdown(event)">
+          .exe (Windows)
+          <span class="toggle-icon">&#9662;</span>
+        </button>
+        <div class="dropdown-content">
+          <a href="#">.exe (Windows)</a>
+          <a href="#">.zip (Windows)</a>
+          <a href="#">.exe (Linux)</a>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function toggleDropdown(event) {
+        const dropdown = event.currentTarget.parentElement;
+        dropdown.classList.toggle("active");
+      }
+
+      document.addEventListener("click", function (event) {
+        if (!event.target.closest(".dropdown")) {
+          document
+            .querySelectorAll(".dropdown.active")
+            .forEach(function (dropdown) {
+              dropdown.classList.remove("active");
+            });
+        }
+      });
+    </script>
+  </body>
+</html>
